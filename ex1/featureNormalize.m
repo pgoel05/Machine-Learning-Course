@@ -1,5 +1,5 @@
 function [X_norm, mu, sigma] = featureNormalize(X)
-%FEATURENORMALIZE Normalizes the features in X 
+%FEATURENORMALIZE Normalizes the features in X
 %   FEATURENORMALIZE(X) returns a normalized version of X where
 %   the mean value of each feature is 0 and the standard deviation
 %   is 1. This is often a good preprocessing step to do when
@@ -26,14 +26,21 @@ sigma = zeros(1, size(X, 2));
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
 
+n = size(X, 2);
 
+for i = 1:n
 
+	avg = mean(X(:, i));
+	deviation = std(X(:, i));
 
+	X_norm(:, i) = X_norm(:, i) - avg;
+	X_norm(:, i) = X_norm(:, i) / deviation;
 
+	mu(i) = avg;
+	sigma(i) = deviation;
 
-
-
-
+end
+return
 % ============================================================
 
 end
